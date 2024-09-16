@@ -12,4 +12,16 @@
 # 手順
 
 ## クラスター構築(1つのコントロールプレーン、2つのデータプレーン)
-`kind create cluster --config cluster-config.yml`
+
+`kind create cluster --config ./config/cluster.yml`
+
+## クラスターの資格情報を取得
+kind get kubeconfig --name k8s-cluster-v1.29
+
+## app コンテナビルド＆起動
+
+`skaffold dev -f ./config/skaffold.yml --port-forward`
+
+## 接続確認
+
+`curl http://127.0.0.1:18081`

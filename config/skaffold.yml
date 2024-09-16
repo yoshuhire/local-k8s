@@ -1,0 +1,21 @@
+# skaffold.yaml
+
+# Skaffoldの設定ファイル
+# このファイルはDockerイメージのビルドとKubernetesへのデプロイを自動化します
+
+apiVersion: skaffold/v2beta26
+kind: Config
+
+# ビルド設定
+build:
+  artifacts:
+  - image: python-app  # ビルドされるイメージの名前
+    context: .         # ビルドコンテキストのパス（通常はプロジェクトのルートディレクトリ）
+    docker:
+      dockerfile: app/Dockerfile  # 使用するDockerfileの名前
+
+# デプロイ設定
+deploy:
+  kubectl:
+    manifests:
+    - k8s-*.yml  # デプロイに使用するKubernetesマニフェストファイルのパターン
